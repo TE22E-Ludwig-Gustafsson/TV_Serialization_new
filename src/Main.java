@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        new TvMain();
+        TvMain tvMain = new TvMain();
+        tvMain.readFromFile(); // Läser in TV-serier från fil
+        tvMain.displayAllShows();
     }
 }

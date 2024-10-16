@@ -30,4 +30,45 @@ public class TvSeries {
         // Uppdaterar antalet episoder för den angivna säsongen
         episodes.set(season - 1, numOfEpisodes);
     }
+
+    // Metod för att ändra betyget
+    public void changeRating(int newRating) {
+        this.rating = newRating;
+    }
+
+    // Metod för att skriva ut information om serien
+    public void printInfo() {
+        System.out.println("Namn: " + name);
+        System.out.println("Betyg: " + rating);
+        for (int i = 0; i < episodes.size(); i++) {
+            System.out.println("Säsong " + (i + 1) + ": " + episodes.get(i) + " episoder");
+        }
+    }
+
+    // Getters för att möjliggöra serialisering
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Integer> getEpisodes() {
+        return episodes;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    // Setters för deserialisering
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEpisodes(ArrayList<Integer> episodes) {
+        this.episodes = episodes;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 }
+
