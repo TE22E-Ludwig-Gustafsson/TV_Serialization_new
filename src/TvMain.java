@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TvMain {
     private ArrayList<TvSeries> shows;
@@ -7,27 +8,43 @@ public class TvMain {
 
     public TvMain() {
         shows = new ArrayList<>();
-        createShowData();
+        scanner = new Scanner(System.in);
+        readFromFile();
     }
 
-    // Skapar initialt dataset
-    public void createShowData() {
-        TvSeries show1 = new TvSeries("Breaking Bad");
-        show1.addEpisodes(7, 1);
-        show1.addEpisodes(13, 2);
-        show1.changeRating(9);
+    public void menu() {
+        while (true) {
+            System.out.println("\n--- TV Series Menu ---");
+            System.out.println("1. Lägg till ny TV-serie");
+            System.out.println("2. Visa alla TV-serier");
+            System.out.println("3. Ändra en TV-serie");
+            System.out.println("4. Spara och avsluta");
+            System.out.print("Välj ett alternativ: ");
 
-        TvSeries show2 = new TvSeries("Stranger Things");
-        show2.addEpisodes(8, 1);
-        show2.addEpisodes(9, 2);
-        show2.changeRating(8);
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Konsumera newline
 
-        shows.add(show1);
-        shows.add(show2);
-
-        // Skriv datat till fil så att det finns sparat till nästa gång
-        write2File();
+            switch (choice) {
+                case 1:
+                    addNewSeries();
+                    break;
+                case 2:
+                    displayAllShows();
+                    break;
+                case 3:
+                    modifySeries();
+                    break;
+                case 4:
+                    write2File();
+                    System.out.println("Programmet avslutas...");
+                    return;
+                default:
+                    System.out.println("Ogiltigt val, försök igen.");
+            }
+        }
     }
+
+
 
     // Metod för att skriva objekt till fil
     public void write2File() {
