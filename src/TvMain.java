@@ -78,8 +78,42 @@ public class TvMain {
         }
     }
 
+public void modifySeries() {
+    System.out.println("Ange namn på Tv-serien som du vill ändra: ");
+    String name = scanner1.nextLine();
+    TvSeries show = findSeriesByName(name);
 
+    if (show != null) {
+        System.out.println("1. Ändra betyg");
+        System.out.println("2. Lägg till episoder");
+        System.out.println("Välj ett alternativ: ");
+        int choice = scanner1.nextInt();
 
+        switch (choice) {
+            case 1:
+                System.out.print("Ange nytt betyg: ");
+                int newRating = scanner1.nextInt();
+                show.changeRating(newRating);
+                System.out.println("Betyget har uppdaterats.");
+                break;
+
+            case 2:
+                System.out.print("Ange säsong att ändra: ");
+                int season = scanner1.nextInt();
+                System.out.print("Ange antal episoder: ");
+                int episodes = scanner1.nextInt();
+                show.addEpisodes(episodes, season);
+                System.out.println("Episoder har uppdaterats.");
+                break;
+
+            default:
+                System.out.println("Ogiltigt val.");
+            }
+        } else {
+        System.out.println("Tv-serien kunde inte hittas.");
+            }
+
+        }
 
 
     // Metod för att skriva objekt till fil
