@@ -3,12 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TvMain {
+    public final Scanner scanner1;
     private ArrayList<TvSeries> shows;
 
 
     public TvMain() {
         shows = new ArrayList<>();
-        scanner = new Scanner(System.in);
+        scanner1 = new Scanner(System.in);
         readFromFile();
     }
 
@@ -21,8 +22,8 @@ public class TvMain {
             System.out.println("4. Spara och avsluta");
             System.out.print("Välj ett alternativ: ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Konsumera newline
+            int choice = scanner1.nextInt();
+            scanner1.nextLine(); // Konsumera newline
 
             switch (choice) {
                 case 1:
@@ -42,6 +43,27 @@ public class TvMain {
                     System.out.println("Ogiltigt val, försök igen.");
             }
         }
+    }
+
+    // Metod för att lägga till en ny TV-serie
+    public void addNewSeries() {
+        System.out.println("Ange namn på TV-serien: ");
+        String name = scanner1.nextLine();
+        TvSeries newShow = new TvSeries(name);
+        System.out.println("Ange betyg för serien: ");
+        int rating = scanner1.nextInt();
+        newShow.changeRating(rating);
+
+        System.out.println("Hur många säsonger vill du lägga till? ");
+        int seasons = scanner1.nextInt();
+        for (int i = 1; i <= seasons; i++) {
+            System.out.println("Ange antalet episoder för säsong " + i + ": ");
+            int episodes = scanner1.nextInt();
+            newShow.addEpisodes(episodes, i );
+        }
+
+        shows.add(newShow);
+        System.out.println("Tv-serien har lagt till!");
     }
 
 
