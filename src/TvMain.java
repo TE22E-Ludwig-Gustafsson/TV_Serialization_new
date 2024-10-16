@@ -66,6 +66,20 @@ public class TvMain {
         System.out.println("Tv-serien har lagt till!");
     }
 
+    //Metod för att visa all information om Tv-serierna
+     public void displayAllShows(){
+        if (shows.isEmpty()) {
+            System.out.println("Inga serier att visa.");
+        } else {
+            for (TvSeries show : shows) {
+                show.printInfo();
+                System.out.println();
+            }
+        }
+    }
+
+
+
 
 
     // Metod för att skriva objekt till fil
@@ -87,15 +101,9 @@ public class TvMain {
             e.printStackTrace();
         }
     }
-
-    // Metod för att visa all information om TV-serierna
-    public void displayAllShows() {
-        for (TvSeries show : shows) {
-            show.printInfo();
-            System.out.println();
-        }
-    }
 }
+
+
 
 
 
