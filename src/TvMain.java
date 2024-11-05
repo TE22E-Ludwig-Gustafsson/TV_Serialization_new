@@ -20,6 +20,7 @@ public class TvMain {
             System.out.println("2. Visa alla TV-serier");
             System.out.println("3. Ändra en TV-serie");
             System.out.println("4. Spara och avsluta");
+            System.out.println("5. Skriv till fil");
             System.out.print("Välj ett alternativ: ");
 
             int choice = scanner1.nextInt();
@@ -39,6 +40,8 @@ public class TvMain {
                     write2File();
                     System.out.println("Programmet avslutas...");
                     return;
+                case 5:
+                    readFromFile();
                 default:
                     System.out.println("Ogiltigt val, försök igen.");
             }
@@ -114,6 +117,16 @@ public void modifySeries() {
             }
 
         }
+
+    // Hjälpmetod för att hitta en serie baserat på namn
+    private TvSeries findSeriesByName(String name) {
+        for (TvSeries show : shows) {
+            if (show.getName().equalsIgnoreCase(name)) {
+                return show;
+            }
+        }
+        return null;
+    }
 
 
     // Metod för att skriva objekt till fil
